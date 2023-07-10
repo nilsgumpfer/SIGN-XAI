@@ -30,7 +30,6 @@ def calculate_explanation_innvestigate(model, x, method='lrp.epsilon', neuron_se
         return np.asarray(expl)
 
 
-
 def load_image(img_path, expand_dims=False):
     # Load and preprocess image
     img = image.load_img(img_path, target_size=(224, 224))
@@ -48,7 +47,7 @@ def load_image(img_path, expand_dims=False):
     x[..., 1] -= mean[1]
     x[..., 2] -= mean[2]
 
-    return x
+    return img, x
 
 
 def aggregate_and_normalize_relevancemap_rgb(R):
@@ -66,3 +65,6 @@ def normalize_heatmap(H):
     a = np.nan_to_num(a, nan=0)
 
     return a
+
+def load_example_image():
+    return load_image('../data/7867854122_b26957e9e3_o.jpg')
