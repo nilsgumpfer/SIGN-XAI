@@ -1,10 +1,10 @@
 import numpy as np
 from tensorflow.keras.applications.vgg16 import VGG16
 
-from methods.wrappers import calculate_relevancemap
+from signxai.methods.wrappers import calculate_relevancemap
 import matplotlib.pyplot as plt
 
-from utils import load_image, aggregate_and_normalize_relevancemap_rgb
+from signxai.utils.utils import load_image, aggregate_and_normalize_relevancemap_rgb
 
 
 def run():

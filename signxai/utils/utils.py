@@ -2,7 +2,7 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.python.keras.activations import linear
 
-from methods import innvestigate
+from signxai.methods import innvestigate
 
 
 def remove_softmax(model):
@@ -47,8 +47,6 @@ def load_image(img_path, expand_dims=False):
     x[..., 0] -= mean[0]
     x[..., 1] -= mean[1]
     x[..., 2] -= mean[2]
-
-    print(np.shape(x))
 
     return x
 

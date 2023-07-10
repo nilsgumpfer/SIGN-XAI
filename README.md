@@ -23,10 +23,17 @@ If you use the code from this repository in your work, please cite:
 
 To install the package in your environment, run:
 
+```shell
+ pip3 install SIGN-XAI
 ```
- pip3 install sign-xai
+
+
+## Usage
+
+```python
+ 
 ```
 
 ## Experiments
 
-To reproduce the experiments from our paper, please find a detailed description on https://github.com/nilsgumpfer/SIGN 
+To reproduce the experiments from our paper, please find a detailed description on https://github.com/nilsgumpfer/SIGN.

@@ -1,9 +1,9 @@
 import numpy as np
 
-from methods.grad_cam import calculate_grad_cam_relevancemap
-from methods.guided_backprop import guided_backprop_on_guided_model
-from methods.signed import calculate_sign_mu
-from utils import calculate_explanation_innvestigate
+from signxai.methods.grad_cam import calculate_grad_cam_relevancemap
+from signxai.methods.guided_backprop import guided_backprop_on_guided_model
+from signxai.methods.signed import calculate_sign_mu
+from signxai.utils.utils import calculate_explanation_innvestigate
 
 
 def random_uniform(model_no_softmax, x, **kwargs):
