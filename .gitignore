@@ -153,15 +153,6 @@ fabric.properties
 *.npy
 
 # Own
-data/datasets/ILSVRC2012val
-data/datasets/MITPLACES365val
-data/datasets/MNIST
-data/models/tf
-plots/
-results/
-tables/
 *.h5
 *.xls
 *.zip
-/sbxplots/
-/plots_bak/
