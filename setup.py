@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='signxai',
-    version='0.0.3',
+    version='0.0.6',
     packages=['signxai.methods', 'signxai.methods.innvestigate', 'signxai.methods.innvestigate.tests', 'signxai.methods.innvestigate.tests.tools',
               'signxai.methods.innvestigate.tests.utils', 'signxai.methods.innvestigate.tests.utils.keras',
               'signxai.methods.innvestigate.tests.utils.tests', 'signxai.methods.innvestigate.tests.analyzer',
@@ -14,6 +14,7 @@ setup(
               'signxai.methods.innvestigate.backend', 'signxai.methods.innvestigate.analyzer',
               'signxai.methods.innvestigate.analyzer.canonization', 'signxai.methods.innvestigate.analyzer.relevance_based',
               'signxai.methods.innvestigate.applications', 'signxai.examples', 'signxai.utils'],
+    package_data={'signxai.examples':['*']},
     url='https://github.com/nilsgumpfer/SIGN-XAI',
     license='BSD 2-Clause License',
     author='Nils Gumpfer',
@@ -34,6 +35,6 @@ setup(
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
     ],
-    install_requires=['tensorflow>=2.2.0', 'matplotlib>=3.3.4'],
+    install_requires=['tensorflow>=2.2.0', 'matplotlib>=3.3.4', 'requests>=2.27.1'],
     include_package_data=True,
 )

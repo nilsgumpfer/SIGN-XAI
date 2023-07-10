@@ -1,6 +1,7 @@
 import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.python.keras.activations import linear
+import requests
 
 from signxai.methods import innvestigate
 
@@ -50,6 +51,13 @@ def load_image(img_path, expand_dims=False):
     return img, x
 
 
+def download_image(path):
+    fname = 'guppy-0.1.10.tar.gz'
+    url = 'https://pypi.python.org/packages/source/g/guppy/' + fname
+    r = requests.get(url)
+    open(fname, 'wb').write(r.content)
+
+
 def aggregate_and_normalize_relevancemap_rgb(R):
     # Aggregate along color channels and normalize to [-1, 1]
     a = R.sum(axis=2)
@@ -65,6 +73,3 @@ def normalize_heatmap(H):
     a = np.nan_to_num(a, nan=0)
 
     return a
-
-def load_example_image():
-    return load_image('../data/7867854122_b26957e9e3_o.jpg')
