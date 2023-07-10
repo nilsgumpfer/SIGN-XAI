@@ -52,10 +52,9 @@ def load_image(img_path, expand_dims=False):
 
 
 def download_image(path):
-    fname = 'guppy-0.1.10.tar.gz'
-    url = 'https://pypi.python.org/packages/source/g/guppy/' + fname
-    r = requests.get(url)
-    open(fname, 'wb').write(r.content)
+    r = requests.get("https://raw.githubusercontent.com/nilsgumpfer/SIGN-XAI/main/signxai/examples/7867854122_b26957e9e3_o.jpg")
+    with open(path, 'wb') as f:
+        f.write(r.content)
 
 
 def aggregate_and_normalize_relevancemap_rgb(R):

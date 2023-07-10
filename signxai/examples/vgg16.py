@@ -2,8 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.applications.vgg16 import VGG16
 from signxai.methods.wrappers import calculate_relevancemap
-from signxai.utils.utils import load_image, aggregate_and_normalize_relevancemap_rgb
-
+from signxai.utils.utils import load_image, aggregate_and_normalize_relevancemap_rgb, download_image
 
 # Load model
 model = VGG16(weights='imagenet')
@@ -12,6 +11,7 @@ model = VGG16(weights='imagenet')
 model.layers[-1].activation = None
 
 # Load example image
+path = 'example.png'
 download_image(path)
 img, x = load_image(path)
 
