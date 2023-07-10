@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sign-xai_nilsgumpfer"
+version = "1.0.0"
+authors = [{ name="Nils Gumpfer", email="nils.gumpfer@kite.thm.de" },{ name="and others" }]
+maintainers = [{ name="Nils Gumpfer", email="nils.gumpfer@kite.thm.de" }]
+description = "SIGNed explanations: Unveiling relevant features by reducing bias"
+readme = "README.md"
+license = "BSD-2-Clause"
+keywords = ["XAI", "SIGN", "LRP"]
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: BSD License",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console", 
+    "Intended Audience :: Science/Research",    
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "tensorflow>=2.2.0",
+    "matplotlib>=3.3.4",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/nilsgumpfer/SIGN-XAI"
+"Bug Tracker" = "https://github.com/nilsgumpfer/SIGN-XAI/issues"
