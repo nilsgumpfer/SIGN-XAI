@@ -9,9 +9,23 @@ from __future__ import\
 
 
 import inspect
-import tensorflow.keras.models as keras_models
-import tensorflow.keras.activations as keras_activations
-import tensorflow.keras.layers as keras_layers
+
+import tensorflow as tf
+from version_parser.version import Version
+tf_v = Version(tf.__version__)
+
+assert tf_v.get_major_version() == 2
+assert tf_v.get_minor_version() >= 2
+
+if tf_v.get_minor_version() >= 2:
+    import tensorflow.keras.models as keras_models
+    import tensorflow.keras.activations as keras_activations
+    import tensorflow.keras.layers as keras_layers
+
+elif tf_v.get_minor_version() >= 6:  # TODO: check
+    import tensorflow.python.keras.models as keras_models
+    import tensorflow.python.keras.activations as keras_activations
+    import tensorflow.python.keras.layers as keras_layers
 
 
 # Prevents circular imports.

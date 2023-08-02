@@ -2,3 +2,4 @@ matplotlib~=3.3.4
 tensorflow~=2.2.0
 requests~=2.27.1
 setuptools~=59.6.0
+version-parser~=1.0.1
