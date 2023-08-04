@@ -8,24 +8,12 @@ from __future__ import\
 ###############################################################################
 
 
-import inspect
-
 import tensorflow as tf
 from version_parser.version import Version
 tf_v = Version(tf.__version__)
 
 assert tf_v.get_major_version() == 2
 assert tf_v.get_minor_version() >= 2
-
-if tf_v.get_minor_version() >= 2:
-    import tensorflow.keras.models as keras_models
-    import tensorflow.keras.activations as keras_activations
-    import tensorflow.keras.layers as keras_layers
-
-elif tf_v.get_minor_version() >= 6:  # TODO: check
-    import tensorflow.python.keras.models as keras_models
-    import tensorflow.python.keras.activations as keras_activations
-    import tensorflow.python.keras.layers as keras_layers
 
 
 # Prevents circular imports.
@@ -35,7 +23,7 @@ def get_kgraph():
 
 
 __all__ = [
-    "get_current_layers",
+    # "get_current_layers",
     "get_known_layers",
     "get_activation_search_safe_layers",
 
@@ -57,16 +45,16 @@ __all__ = [
 ###############################################################################
 
 
-def get_current_layers():
-    """
-    Returns a list of currently available layers in Keras.
-    """
-    class_set = set([(getattr(keras_layers, name), name)
-                     for name in dir(keras_layers)
-                     if (inspect.isclass(getattr(keras_layers, name)) and
-                         issubclass(getattr(keras_layers, name),
-                                    keras_layers.Layer))])
-    return [x[1] for x in sorted((str(x[0]), x[1]) for x in class_set)]
+# def get_current_layers():
+#     """
+#     Returns a list of currently available layers in Keras.
+#     """
+#     class_set = set([(getattr(keras_layers, name), name)
+#                      for name in dir(keras_layers)
+#                      if (inspect.isclass(getattr(keras_layers, name)) and
+#                          issubclass(getattr(keras_layers, name),
+#                                     'Layer'))])
+#     return [x[1] for x in sorted((str(x[0]), x[1]) for x in class_set)]
 
 
 def get_known_layers():
@@ -76,85 +64,100 @@ def get_known_layers():
 
     # Inside function to not break import if Keras changes.
     KNOWN_LAYERS = (
-        keras_layers.ELU,
-        keras_layers.LeakyReLU,
-        keras_layers.PReLU,
-        keras_layers.Softmax,
-        keras_layers.ThresholdedReLU,
-        keras_layers.Conv1D,
-        keras_layers.Conv2D,
-        keras_layers.Conv2DTranspose,
-        keras_layers.Conv3D,
-        keras_layers.Conv3DTranspose,
-        keras_layers.Cropping1D,
-        keras_layers.Cropping2D,
-        keras_layers.Cropping3D,
-        keras_layers.SeparableConv1D,
-        keras_layers.SeparableConv2D,
-        keras_layers.UpSampling1D,
-        keras_layers.UpSampling2D,
-        keras_layers.UpSampling3D,
-        keras_layers.ZeroPadding1D,
-        keras_layers.ZeroPadding2D,
-        keras_layers.ZeroPadding3D,
-        keras_layers.ConvLSTM2D,
-        keras_layers.ConvRecurrent2D,
-        keras_layers.Activation,
-        keras_layers.ActivityRegularization,
-        keras_layers.Dense,
-        keras_layers.Dropout,
-        keras_layers.Flatten,
-        keras_layers.InputLayer,
-        keras_layers.Lambda,
-        keras_layers.Masking,
-        keras_layers.Permute,
-        keras_layers.RepeatVector,
-        keras_layers.Reshape,
-        keras_layers.SpatialDropout1D,
-        keras_layers.SpatialDropout2D,
-        keras_layers.SpatialDropout3D,
-        keras_layers.CuDNNGRU,
-        keras_layers.CuDNNLSTM,
-        keras_layers.Embedding,
-        keras_layers.LocallyConnected1D,
-        keras_layers.LocallyConnected2D,
-        keras_layers.Add,
-        keras_layers.Average,
-        keras_layers.Concatenate,
-        keras_layers.Dot,
-        keras_layers.Maximum,
-        keras_layers.Minimum,
-        keras_layers.Multiply,
-        keras_layers.Subtract,
-        keras_layers.AlphaDropout,
-        keras_layers.GaussianDropout,
-        keras_layers.GaussianNoise,
-        keras_layers.BatchNormalization,
-        keras_layers.AveragePooling1D,
-        keras_layers.AveragePooling2D,
-        keras_layers.AveragePooling3D,
-        keras_layers.GlobalAveragePooling1D,
-        keras_layers.GlobalAveragePooling2D,
-        keras_layers.GlobalAveragePooling3D,
-        keras_layers.GlobalMaxPooling1D,
-        keras_layers.GlobalMaxPooling2D,
-        keras_layers.GlobalMaxPooling3D,
-        keras_layers.MaxPooling1D,
-        keras_layers.MaxPooling2D,
-        keras_layers.MaxPooling3D,
-        keras_layers.GRU,
-        keras_layers.GRUCell,
-        keras_layers.LSTM,
-        keras_layers.LSTMCell,
-        keras_layers.RNN,
-        keras_layers.SimpleRNN,
-        keras_layers.SimpleRNNCell,
-        keras_layers.StackedRNNCells,
-        keras_layers.Bidirectional,
-        keras_layers.TimeDistributed,
-        keras_layers.Wrapper,
+        'ELU',
+        'LeakyReLU',
+        'PReLU',
+        'Softmax',
+        'ThresholdedReLU',
+        'Conv1D',
+        'Conv2D',
+        'Conv2DTranspose',
+        'Conv3D',
+        'Conv3DTranspose',
+        'Cropping1D',
+        'Cropping2D',
+        'Cropping3D',
+        'SeparableConv1D',
+        'SeparableConv2D',
+        'UpSampling1D',
+        'UpSampling2D',
+        'UpSampling3D',
+        'ZeroPadding1D',
+        'ZeroPadding2D',
+        'ZeroPadding3D',
+        'ConvLSTM2D',
+        'ConvRecurrent2D',
+        'Activation',
+        'ActivityRegularization',
+        'Dense',
+        'Dropout',
+        'Flatten',
+        'InputLayer',
+        'Lambda',
+        'Masking',
+        'Permute',
+        'RepeatVector',
+        'Reshape',
+        'SpatialDropout1D',
+        'SpatialDropout2D',
+        'SpatialDropout3D',
+        'CuDNNGRU',
+        'CuDNNLSTM',
+        'Embedding',
+        'LocallyConnected1D',
+        'LocallyConnected2D',
+        'Add',
+        'Average',
+        'Concatenate',
+        'Dot',
+        'Maximum',
+        'Minimum',
+        'Multiply',
+        'Subtract',
+        'AlphaDropout',
+        'GaussianDropout',
+        'GaussianNoise',
+        'BatchNormalization',
+        'AveragePooling1D',
+        'AveragePooling2D',
+        'AveragePooling3D',
+        'GlobalAveragePooling1D',
+        'GlobalAveragePooling2D',
+        'GlobalAveragePooling3D',
+        'GlobalMaxPooling1D',
+        'GlobalMaxPooling2D',
+        'GlobalMaxPooling3D',
+        'MaxPooling1D',
+        'MaxPooling2D',
+        'MaxPooling3D',
+        'GRU',
+        'GRUCell',
+        'LSTM',
+        'LSTMCell',
+        'RNN',
+        'SimpleRNN',
+        'SimpleRNNCell',
+        'StackedRNNCells',
+        'Bidirectional',
+        'TimeDistributed',
+        'Wrapper',
     )
     return KNOWN_LAYERS
+
+
+def get_known_activations(lowercase=False):
+    ACTIVATIONS = (
+            'ReLU',
+            'ELU',
+            'LeakyReLU',
+            'PReLU',
+            'Softmax',
+            'ThresholdedReLU')
+
+    if lowercase:
+        return [str.lower(x) for x in ACTIVATIONS]
+    else:
+        return ACTIVATIONS
 
 
 def get_activation_search_safe_layers():
@@ -165,19 +168,19 @@ def get_activation_search_safe_layers():
 
     # Inside function to not break import if Keras changes.
     ACTIVATION_SEARCH_SAFE_LAYERS = (
-        keras_layers.ELU,
-        keras_layers.LeakyReLU,
-        keras_layers.PReLU,
-        keras_layers.Softmax,
-        keras_layers.ThresholdedReLU,
-        keras_layers.Activation,
-        keras_layers.ActivityRegularization,
-        keras_layers.Dropout,
-        keras_layers.Flatten,
-        keras_layers.Reshape,
-        keras_layers.Add,
-        keras_layers.GaussianNoise,
-        keras_layers.BatchNormalization,
+        'ELU',
+        'LeakyReLU',
+        'PReLU',
+        'Softmax',
+        'ThresholdedReLU',
+        'Activation',
+        'ActivityRegularization',
+        'Dropout',
+        'Flatten',
+        'Reshape',
+        'Add',
+        'GaussianNoise',
+        'BatchNormalization',
     )
     return ACTIVATION_SEARCH_SAFE_LAYERS
 
@@ -193,25 +196,14 @@ def contains_activation(layer, activation=None):
     activation is None then we only check if layer can contain an activation.
     """
 
-    # todo: add test and check this more throughroughly.
-    # rely on Keras convention.
     if hasattr(layer, "activation"):
+        # print(layer.activation, activation)
         if activation is not None:
-            return layer.activation == keras_activations.get(activation)
+            return activation in str(layer.activation)
+        # any([x in str(layer.activation) for x in get_known_activations(lowercase=True)])
         else:
             return True
-    elif isinstance(layer, keras_layers.ReLU):
-        if activation is not None:
-            return (keras_activations.get("relu") ==
-                    keras_activations.get(activation))
-        else:
-            return True
-    elif isinstance(layer, (
-            keras_layers.ELU,
-            keras_layers.LeakyReLU,
-            keras_layers.PReLU,
-            keras_layers.Softmax,
-            keras_layers.ThresholdedReLU)):
+    elif isInstanceOf(layer, get_known_activations()):
         if activation is not None:
             raise Exception("Cannot detect activation type.")
         else:
@@ -258,107 +250,107 @@ def is_network(layer):
     """
     Is network in network?
     """
-    return isinstance(layer, keras_models.Model)
+    return isInstanceOf(layer, 'Model')
 
 
 def is_conv_layer(layer, *args, **kwargs):
     """Checks if layer is a convolutional layer."""
     CONV_LAYERS = (
-        keras_layers.Conv1D,
-        keras_layers.Conv2D,
-        keras_layers.Conv2DTranspose,
-        keras_layers.Conv3D,
-        keras_layers.Conv3DTranspose,
-        keras_layers.SeparableConv1D,
-        keras_layers.SeparableConv2D,
-        keras_layers.DepthwiseConv2D
+        'Conv1D',
+        'Conv2D',
+        'Conv2DTranspose',
+        'Conv3D',
+        'Conv3DTranspose',
+        'SeparableConv1D',
+        'SeparableConv2D',
+        'DepthwiseConv2D'
     )
-    return isinstance(layer, CONV_LAYERS)
+    return isInstanceOf(layer, CONV_LAYERS)
 
 
 def is_batch_normalization_layer(layer, *args, **kwargs):
     """Checks if layer is a batchnorm layer."""
-    return isinstance(layer, keras_layers.BatchNormalization)
+    return isInstanceOf(layer, 'BatchNormalization')
 
 
 def is_add_layer(layer, *args, **kwargs):
     """Checks if layer is an addition-merge layer."""
-    return isinstance(layer, keras_layers.Add)
+    return isInstanceOf(layer, 'Add')
 
 
 def is_dense_layer(layer, *args, **kwargs):
     """Checks if layer is a dense layer."""
-    return isinstance(layer, keras_layers.Dense)
+    return isInstanceOf(layer, 'Dense')
 
 
 def is_convnet_layer(layer):
     """Checks if layer is from a convolutional network."""
     # Inside function to not break import if Keras changes.
     CONVNET_LAYERS = (
-        keras_layers.ELU,
-        keras_layers.LeakyReLU,
-        keras_layers.PReLU,
-        keras_layers.Softmax,
-        keras_layers.ThresholdedReLU,
-        keras_layers.Conv1D,
-        keras_layers.Conv2D,
-        keras_layers.Conv2DTranspose,
-        keras_layers.Conv3D,
-        keras_layers.Conv3DTranspose,
-        keras_layers.Cropping1D,
-        keras_layers.Cropping2D,
-        keras_layers.Cropping3D,
-        keras_layers.SeparableConv1D,
-        keras_layers.SeparableConv2D,
-        keras_layers.UpSampling1D,
-        keras_layers.UpSampling2D,
-        keras_layers.UpSampling3D,
-        keras_layers.ZeroPadding1D,
-        keras_layers.ZeroPadding2D,
-        keras_layers.ZeroPadding3D,
-        keras_layers.Activation,
-        keras_layers.ActivityRegularization,
-        keras_layers.Dense,
-        keras_layers.Dropout,
-        keras_layers.Flatten,
-        keras_layers.InputLayer,
-        keras_layers.Lambda,
-        keras_layers.Masking,
-        keras_layers.Permute,
-        keras_layers.RepeatVector,
-        keras_layers.Reshape,
-        keras_layers.SpatialDropout1D,
-        keras_layers.SpatialDropout2D,
-        keras_layers.SpatialDropout3D,
-        keras_layers.Embedding,
-        keras_layers.LocallyConnected1D,
-        keras_layers.LocallyConnected2D,
-        keras_layers.Add,
-        keras_layers.Average,
-        keras_layers.Concatenate,
-        keras_layers.Dot,
-        keras_layers.Maximum,
-        keras_layers.Minimum,
-        keras_layers.Multiply,
-        keras_layers.Subtract,
-        keras_layers.AlphaDropout,
-        keras_layers.GaussianDropout,
-        keras_layers.GaussianNoise,
-        keras_layers.BatchNormalization,
-        keras_layers.AveragePooling1D,
-        keras_layers.AveragePooling2D,
-        keras_layers.AveragePooling3D,
-        keras_layers.GlobalAveragePooling1D,
-        keras_layers.GlobalAveragePooling2D,
-        keras_layers.GlobalAveragePooling3D,
-        keras_layers.GlobalMaxPooling1D,
-        keras_layers.GlobalMaxPooling2D,
-        keras_layers.GlobalMaxPooling3D,
-        keras_layers.MaxPooling1D,
-        keras_layers.MaxPooling2D,
-        keras_layers.MaxPooling3D,
+        'ELU',
+        'LeakyReLU',
+        'PReLU',
+        'Softmax',
+        'ThresholdedReLU',
+        'Conv1D',
+        'Conv2D',
+        'Conv2DTranspose',
+        'Conv3D',
+        'Conv3DTranspose',
+        'Cropping1D',
+        'Cropping2D',
+        'Cropping3D',
+        'SeparableConv1D',
+        'SeparableConv2D',
+        'UpSampling1D',
+        'UpSampling2D',
+        'UpSampling3D',
+        'ZeroPadding1D',
+        'ZeroPadding2D',
+        'ZeroPadding3D',
+        'Activation',
+        'ActivityRegularization',
+        'Dense',
+        'Dropout',
+        'Flatten',
+        'InputLayer',
+        'Lambda',
+        'Masking',
+        'Permute',
+        'RepeatVector',
+        'Reshape',
+        'SpatialDropout1D',
+        'SpatialDropout2D',
+        'SpatialDropout3D',
+        'Embedding',
+        'LocallyConnected1D',
+        'LocallyConnected2D',
+        'Add',
+        'Average',
+        'Concatenate',
+        'Dot',
+        'Maximum',
+        'Minimum',
+        'Multiply',
+        'Subtract',
+        'AlphaDropout',
+        'GaussianDropout',
+        'GaussianNoise',
+        'BatchNormalization',
+        'AveragePooling1D',
+        'AveragePooling2D',
+        'AveragePooling3D',
+        'GlobalAveragePooling1D',
+        'GlobalAveragePooling2D',
+        'GlobalAveragePooling3D',
+        'GlobalMaxPooling1D',
+        'GlobalMaxPooling2D',
+        'GlobalMaxPooling3D',
+        'MaxPooling1D',
+        'MaxPooling2D',
+        'MaxPooling3D',
     )
-    return isinstance(layer, CONVNET_LAYERS)
+    return isInstanceOf(layer, CONVNET_LAYERS)
 
 
 def is_relu_convnet_layer(layer):
@@ -369,27 +361,27 @@ def is_relu_convnet_layer(layer):
 def is_average_pooling(layer):
     """Checks if layer is an average-pooling layer."""
     AVERAGEPOOLING_LAYERS = (
-        keras_layers.AveragePooling1D,
-        keras_layers.AveragePooling2D,
-        keras_layers.AveragePooling3D,
-        keras_layers.GlobalAveragePooling1D,
-        keras_layers.GlobalAveragePooling2D,
-        keras_layers.GlobalAveragePooling3D,
+        'AveragePooling1D',
+        'AveragePooling2D',
+        'AveragePooling3D',
+        'GlobalAveragePooling1D',
+        'GlobalAveragePooling2D',
+        'GlobalAveragePooling3D',
     )
-    return isinstance(layer, AVERAGEPOOLING_LAYERS)
+    return isInstanceOf(layer, AVERAGEPOOLING_LAYERS)
 
 
 def is_max_pooling(layer):
     """Checks if layer is a max-pooling layer."""
     MAXPOOLING_LAYERS = (
-        keras_layers.MaxPooling1D,
-        keras_layers.MaxPooling2D,
-        keras_layers.MaxPooling3D,
-        keras_layers.GlobalMaxPooling1D,
-        keras_layers.GlobalMaxPooling2D,
-        keras_layers.GlobalMaxPooling3D,
+        'MaxPooling1D',
+        'MaxPooling2D',
+        'MaxPooling3D',
+        'GlobalMaxPooling1D',
+        'GlobalMaxPooling2D',
+        'GlobalMaxPooling3D',
     )
-    return isinstance(layer, MAXPOOLING_LAYERS)
+    return isInstanceOf(layer, MAXPOOLING_LAYERS)
 
 
 def is_input_layer(layer, ignore_reshape_layers=True):
@@ -405,31 +397,45 @@ def is_input_layer(layer, ignore_reshape_layers=True):
     # the data content.
     # todo: update this list!
     IGNORED_LAYERS = (
-        keras_layers.Flatten,
-        keras_layers.Permute,
-        keras_layers.Reshape,
-        keras_layers.ZeroPadding1D,
-        keras_layers.ZeroPadding2D,
-        keras_layers.ZeroPadding3D
+        'Flatten',
+        'Permute',
+        'Reshape',
+        'ZeroPadding1D',
+        'ZeroPadding2D',
+        'ZeroPadding3D'
     )
-    while any([isinstance(x, IGNORED_LAYERS) for x in layer_inputs]):
+    while any([isInstanceOf(x, IGNORED_LAYERS) for x in layer_inputs]):
         tmp = set()
         for l in layer_inputs:
             if(ignore_reshape_layers and
-               isinstance(l, IGNORED_LAYERS)):
+               isInstanceOf(l, IGNORED_LAYERS)):
                 tmp.update(kgraph.get_input_layers(l))
             else:
                 tmp.add(l)
         layer_inputs = tmp
 
-    # print([type(x) for x in layer_inputs])
-    if all([isinstance(x, keras_layers.InputLayer) for x in layer_inputs]):
+    # print([(type(x), 'InputLayer') for x in layer_inputs])
+    if all(['InputLayer' in str(type(x)) for x in layer_inputs]):
         # print('IsInputLayer = True')
         return True
     else:
         # print('IsInputLayer = False')
         return False
 
+
+def isInstanceOf(obj, valid):
+    obj_type = str(type(obj))
+    if type(valid) == str:
+        if obj_type.endswith(".{}'>".format(valid)):
+            return True
+    elif type(valid) == list or type(valid) == tuple:
+        for x in valid:
+            if obj_type.endswith(".{}'>".format(x)):
+                return True
+    else:
+        raise Exception('Unknown type: {}'.format(type(valid)))
+
+    return False
 
 def is_layer_at_idx(layer, index, ignore_reshape_layers=True):
     """Checks if layer is a layer at index index."""
@@ -444,18 +450,18 @@ def is_layer_at_idx(layer, index, ignore_reshape_layers=True):
     # the data content.
     # todo: update this list!
     IGNORED_LAYERS = (
-        keras_layers.Flatten,
-        keras_layers.Permute,
-        keras_layers.Reshape,
+        'Flatten',
+        'Permute',
+        'Reshape',
     )
 
     for i in range(index):
 
-        while any([isinstance(x, IGNORED_LAYERS) for x in layer_inputs]):
+        while any([isInstanceOf(x, IGNORED_LAYERS) for x in layer_inputs]):
             tmp = set()
             for l in layer_inputs:
                 if (ignore_reshape_layers and
-                        isinstance(l, IGNORED_LAYERS)):
+                        isInstanceOf(l, IGNORED_LAYERS)):
                     tmp.update(kgraph.get_input_layers(l))
                 else:
                     tmp.add(l)
@@ -466,7 +472,7 @@ def is_layer_at_idx(layer, index, ignore_reshape_layers=True):
             tmp.update(kgraph.get_input_layers(l))
         layer_inputs = tmp
 
-        if any([isinstance(x, keras_layers.InputLayer)
+        if any([isInstanceOf(x, 'InputLayer')
                 for x in layer_inputs]):
             return False
 

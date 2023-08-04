@@ -154,7 +154,6 @@ fabric.properties
 *.npy
 
 # Own
-*.h5
 *.xls
 *.zip
-/signxai/examples/example.png
+/signxai/examples/example.jpg

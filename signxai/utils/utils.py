@@ -56,6 +56,11 @@ def download_image(path):
     with open(path, 'wb') as f:
         f.write(r.content)
 
+def download_model(path):
+    r = requests.get("https://raw.githubusercontent.com/nilsgumpfer/SIGN-XAI/main/signxai/examples/7867854122_b26957e9e3_o.jpg")
+    with open(path, 'wb') as f:
+        f.write(r.content)
+
 
 def aggregate_and_normalize_relevancemap_rgb(R):
     # Aggregate along color channels and normalize to [-1, 1]
