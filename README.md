@@ -97,7 +97,7 @@ x_train = -(np.ones_like(x_train) + x_train)
 x_test = -(np.ones_like(x_test) + x_test)
 
 # Load model
-path = 'DENSEMNIST10INV.h5'
+path = 'model.h5'
 download_model(path)
 model = load_model(path)
 
@@ -108,12 +108,17 @@ model.layers[-1].activation = None
 x = x_test[231]
 R1 = calculate_relevancemap('gradient_x_input', np.array(x), model, neuron_selection=3)
 R2 = calculate_relevancemap('gradient_x_sign_mu_neg_0_5', np.array(x), model, neuron_selection=3)
+R3 = calculate_relevancemap('gradient_x_input', np.array(x), model, neuron_selection=8)
+R4 = calculate_relevancemap('gradient_x_sign_mu_neg_0_5', np.array(x), model, neuron_selection=8)
 
 # Visualize heatmaps
-fig, axs = plt.subplots(ncols=5, figsize=(18, 6))
-axs[0].imshow(x, cmap='seismic', clim=(-1, 1))
-axs[1].matshow(normalize_heatmap(R1), cmap='seismic', clim=(-1, 1))
-axs[2].matshow(normalize_heatmap(R2), cmap='seismic', clim=(-1, 1))
+fig, axs = plt.subplots(ncols=3, nrows=2, figsize=(18, 12))
+axs[0][0].imshow(x, cmap='seismic', clim=(-1, 1))
+axs[1][0].imshow(x, cmap='seismic', clim=(-1, 1))
+axs[0][1].matshow(normalize_heatmap(R1), cmap='seismic', clim=(-1, 1))
+axs[0][2].matshow(normalize_heatmap(R2), cmap='seismic', clim=(-1, 1))
+axs[1][1].matshow(normalize_heatmap(R3), cmap='seismic', clim=(-1, 1))
+axs[1][2].matshow(normalize_heatmap(R4), cmap='seismic', clim=(-1, 1))
 
 plt.show()
 ```

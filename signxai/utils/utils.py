@@ -57,7 +57,7 @@ def download_image(path):
         f.write(r.content)
 
 def download_model(path):
-    r = requests.get("https://raw.githubusercontent.com/nilsgumpfer/SIGN-XAI/main/signxai/examples/7867854122_b26957e9e3_o.jpg")
+    r = requests.get("https://github.com/nilsgumpfer/SIGN-XAI/raw/main/signxai/examples/DENSEMNIST10INV.h5")
     with open(path, 'wb') as f:
         f.write(r.content)
 

@@ -157,3 +157,4 @@ fabric.properties
 *.xls
 *.zip
 /signxai/examples/example.jpg
+/signxai/examples/model.h5
