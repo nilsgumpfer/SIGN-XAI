@@ -199,13 +199,12 @@ def contains_activation(layer, activation=None):
     if hasattr(layer, "activation"):
         # print(layer.activation, activation)
         if activation is not None:
-            return activation in str(layer.activation)
-        # any([x in str(layer.activation) for x in get_known_activations(lowercase=True)])
+            return activation.lower() in str(layer.activation).lower()
         else:
             return True
     elif isInstanceOf(layer, get_known_activations()):
         if activation is not None:
-            raise Exception("Cannot detect activation type.")
+            return activation.lower() in str(type(layer)).lower()
         else:
             return True
     else:
