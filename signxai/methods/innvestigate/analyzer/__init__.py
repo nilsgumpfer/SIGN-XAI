@@ -59,6 +59,9 @@ analyzers = {
     "smoothgrad": SmoothGrad,
     "vargrad": VarGrad,
 
+    # Other
+    "deep_lift": DeepLIFTWrapper,
+
     # Relevance based
     "lrp": LRP,
 

@@ -1,6 +1,6 @@
 import numpy as np
 
-from signxai.methods.grad_cam import calculate_grad_cam_relevancemap
+from signxai.methods.grad_cam import calculate_grad_cam_relevancemap, calculate_grad_cam_relevancemap_timeseries
 from signxai.methods.guided_backprop import guided_backprop_on_guided_model
 from signxai.methods.signed import calculate_sign_mu
 from signxai.utils.utils import calculate_explanation_innvestigate
@@ -174,6 +174,14 @@ def deconvnet_x_sign_mu_0_5(model_no_softmax, x, **kwargs):
 
 def deconvnet_x_sign_mu_neg_0_5(model_no_softmax, x, **kwargs):
     return deconvnet_x_sign_mu(model_no_softmax, x, mu=-0.5, **kwargs)
+
+
+def grad_cam(model_no_softmax, x, **kwargs):
+    return calculate_grad_cam_relevancemap(np.array([x]), model_no_softmax, resize=True, **kwargs)
+
+
+def grad_cam_timeseries(model_no_softmax, x, **kwargs):
+    return calculate_grad_cam_relevancemap_timeseries(np.array([x]), model_no_softmax, resize=True, **kwargs)
 
 
 def grad_cam_VGG16ILSVRC(model_no_softmax, x, **kwargs):
