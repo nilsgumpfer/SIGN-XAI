@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='signxai',
-    version='1.1.3',
+    version='1.1.5',
     packages=['signxai.methods', 'signxai.methods.innvestigate', 'signxai.methods.innvestigate.tests', 'signxai.methods.innvestigate.tests.tools',
               'signxai.methods.innvestigate.tests.utils', 'signxai.methods.innvestigate.tests.utils.keras',
               'signxai.methods.innvestigate.tests.utils.tests', 'signxai.methods.innvestigate.tests.analyzer',
@@ -33,6 +33,6 @@ setup(
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
     ],
-    install_requires=['tensorflow>=2.2.0', 'matplotlib>=3.3.4', 'requests>=2.27.1', 'version-parser>=1.0.1'],
+    install_requires=['tensorflow>=2.8.0', 'tensorflow>=2.12.1', 'matplotlib>=3.7.0', 'scipy>=1.11.0', 'version-parser>=1.0.1'],
     include_package_data=True,
 )

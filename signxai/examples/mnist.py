@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from tensorflow.python.keras.datasets import mnist
-from tensorflow.python.keras.models import load_model
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.models import load_model
 
 from signxai.methods.wrappers import calculate_relevancemap
 from signxai.utils.utils import normalize_heatmap, download_model
