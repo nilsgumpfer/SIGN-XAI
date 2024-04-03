@@ -5,3 +5,4 @@ rm dist -rf
 rm *.egg-info -rf
 
 python3 -m build
+python3 -m twine upload dist/*
