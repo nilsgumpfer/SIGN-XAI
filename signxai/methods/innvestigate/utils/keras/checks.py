@@ -118,6 +118,7 @@ def get_known_layers():
         'GaussianDropout',
         'GaussianNoise',
         'BatchNormalization',
+        'BatchNorm',
         'AveragePooling1D',
         'AveragePooling2D',
         'AveragePooling3D',
@@ -181,6 +182,7 @@ def get_activation_search_safe_layers():
         'Add',
         'GaussianNoise',
         'BatchNormalization',
+        'BatchNorm',
     )
     return ACTIVATION_SEARCH_SAFE_LAYERS
 
@@ -269,7 +271,11 @@ def is_conv_layer(layer, *args, **kwargs):
 
 def is_batch_normalization_layer(layer, *args, **kwargs):
     """Checks if layer is a batchnorm layer."""
-    return isInstanceOf(layer, 'BatchNormalization')
+    BN_LAYERS = (
+        'BatchNormalization',
+        'BatchNorm',
+    )
+    return isInstanceOf(layer, BN_LAYERS)
 
 
 def is_add_layer(layer, *args, **kwargs):
@@ -336,6 +342,7 @@ def is_convnet_layer(layer):
         'GaussianDropout',
         'GaussianNoise',
         'BatchNormalization',
+        'BatchNorm',
         'AveragePooling1D',
         'AveragePooling2D',
         'AveragePooling3D',
