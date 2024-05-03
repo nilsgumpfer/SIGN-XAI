@@ -1091,7 +1091,6 @@ class GammaRule(reverse_map.ReplacementLayer):
         return ret
 
 
-
 class BatchNormalizationReverseRule(reverse_map.ReplacementLayer):
     """Special BN handler that applies the Z-Rule"""
 
@@ -1128,6 +1127,7 @@ class BatchNormalizationReverseRule(reverse_map.ReplacementLayer):
             reversed_outs = outs
 
         # prepare broadcasting shape for layer parameters
+        self._axis = np.array(self._axis)[0]  # TODO: tmp NILS
         broadcast_shape = [1] * len(self.input_shape[0])
         broadcast_shape[self._axis] = self.input_shape[0][self._axis]
         broadcast_shape[0] = -1
@@ -1150,6 +1150,8 @@ class BatchNormalizationReverseRule(reverse_map.ReplacementLayer):
             y_minus_beta = [minus_beta(o) for o in outs]
         else:
             y_minus_beta = outs
+
+        y_minus_beta = y_minus_beta[0]  # TODO: tmp NILS
 
         if len(self.layer_next) > 1:
 
