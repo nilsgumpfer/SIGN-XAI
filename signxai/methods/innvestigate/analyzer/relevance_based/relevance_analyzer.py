@@ -221,19 +221,22 @@ class LRP(base.ReverseAnalyzerBase):
         # specialized backward hooks. TODO: add ReverseLayer class handling layers Without kernel: Add and AvgPool
         bn_layer_rule = self._bn_layer_rule
 
-        if bn_layer_rule is None:
-            # todo(alber): get rid of this option!
-            # alternatively a default rule should be applied.
-            bn_mapping = rrule.BatchNormalizationReverseRule
-        else:
-            if isinstance(bn_layer_rule, six.string_types):
-                bn_layer_rule = LRP_RULES[bn_layer_rule]
+        # TODO tmp NILS
+        bn_mapping = rrule.BatchNormalizationReverseRule
 
-            # TODO: this still correct?
-            bn_mapping = kgraph.apply_mapping_to_fused_bn_layer(
-                bn_layer_rule,
-                fuse_mode=self._bn_layer_fuse_mode,
-            )
+        # if bn_layer_rule is None:
+        #     # todo(alber): get rid of this option!
+        #     # alternatively a default rule should be applied.
+        #     bn_mapping = rrule.BatchNormalizationReverseRule
+        # else:
+        #     if isinstance(bn_layer_rule, six.string_types):
+        #         bn_layer_rule = LRP_RULES[bn_layer_rule]
+        #
+        #     # TODO: this still correct?
+        #     bn_mapping = kgraph.apply_mapping_to_fused_bn_layer(
+        #         bn_layer_rule,
+        #         fuse_mode=self._bn_layer_fuse_mode,
+        #     )
         self._add_conditional_reverse_mapping(
             kchecks.is_batch_normalization_layer,
             bn_mapping,
