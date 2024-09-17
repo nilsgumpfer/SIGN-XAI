@@ -106,6 +106,12 @@ def smoothgrad(model_no_softmax, x, **kwargs):
     return calculate_explanation_innvestigate(model_no_softmax, x, method='smoothgrad', augment_by_n=50, noise_scale=0.2, **kwargs)
 
 
+def smoothgrad_x_input(model_no_softmax, x, **kwargs):
+    g = smoothgrad(model_no_softmax, x, **kwargs)
+
+    return g * x
+
+
 def smoothgrad_x_sign(model_no_softmax, x, **kwargs):
     g = smoothgrad(model_no_softmax, x, **kwargs)
     s = np.nan_to_num(x / np.abs(x), nan=1.0)
