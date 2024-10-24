@@ -6,7 +6,7 @@ with open('README.md') as f:
 
 setup(
     name='signxai',
-    version='1.1.9',
+    version='1.1.9.1',
     packages=['signxai.methods', 'signxai.methods.innvestigate', 'signxai.methods.innvestigate.tests', 'signxai.methods.innvestigate.tests.tools',
               'signxai.methods.innvestigate.tests.utils', 'signxai.methods.innvestigate.tests.utils.keras',
               'signxai.methods.innvestigate.tests.utils.tests', 'signxai.methods.innvestigate.tests.analyzer',
@@ -45,6 +45,6 @@ setup(
         'matplotlib>=3.7.0',
         'scipy>=1.10.0',
         'version-parser>=1.0.1',
-    ] + (['tensorflow-macos>=2.8.0,<=2.12.0'] if platform.system == "Darwin" else ['tensorflow>=2.8.0,<=2.12.1']),
+    ] + (['tensorflow-macos>=2.8.0,<=2.12.0'] if platform.system() == "Darwin" else ['tensorflow>=2.8.0,<=2.12.1']),
     include_package_data=True,
 )
